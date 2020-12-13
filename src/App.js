@@ -7,6 +7,23 @@ import Brand from "./components/Brand";
 
 class App extends React.Component {
 
+  constructor(){
+    super();
+    
+    this.friendsList = [
+      {user: "Katy"},
+      {user: "Alex"}, 
+    ];
+
+
+    this.onSelectFriend = this.onSelectFriend.bind(this);
+
+  }
+
+  onSelectFriend(friend) {
+     console.log(friend)
+  }
+
   render() {
     return (
       <section className='flex h-screen antialiased text-gray-800 w-full'>
@@ -15,7 +32,7 @@ class App extends React.Component {
             
             <Brand name="Chatty!"/>
 
-            <FriendsList />
+            <FriendsList selected={this.onSelectFriend} friends={this.friendsList} />
 
           </aside>
 
