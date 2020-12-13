@@ -1,5 +1,7 @@
 import './App.css'
 import React from 'react'
+import MessagesList from "./components/MessagesList";
+import FriendsList from "./components/FriendsList";
 
 class App extends React.Component {
 
@@ -13,56 +15,15 @@ class App extends React.Component {
                 Chatty!
               </div>
             </div>
-            <div className='flex flex-col mt-8'>
-              <div className='flex flex-row items-center justify-between text-xs'>
-                <span className='font-bold'>Friends</span>
-              </div>
-              <div className='flex flex-col space-y-1 mt-4 -mx-2 h-64 overflow-y-auto'>
-                <button className='flex flex-row items-center focus:outline-none hover:bg-gray-300 text-indigo-800 text-white hover:bg-indigo-600 hover:text-white focus:bg-indigo-600 focus:text-white rounded-xl p-2'>
-                  <div className='flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full'>
-                    K
-                  </div>
-                  <div className='ml-2 text-sm font-semibold'>
-                    Katy
-                  </div>
-                </button>
-                <button className='flex flex-row items-center focus:outline-none hover:bg-gray-300 text-indigo-800 text-white hover:bg-indigo-600 hover:text-white focus:bg-indigo-600 focus:text-white rounded-xl p-2'>
-                  <div className='flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full'>
-                    A
-                  </div>
-                  <div className='ml-2 text-sm font-semibold'>
-                    Alex
-                  </div>
-                </button>
-              </div>
-            </div>
+
+            <FriendsList />
+
           </aside>
           <aside className='flex flex-col flex-auto w-full h-full'>
             <section className='flex flex-col flex-auto flex-shrink-0 bg-gray-100 h-full p-4'>
-              <div className='flex flex-col h-full overflow-x-auto mb-2 mt-2'>
-                <div className='flex flex-col h-full'>
-                  <div className='grid grid-cols-12 gap-y-2'>
-                    <div className='col-start-1 col-end-8 p-2 rounded-lg'>
-                      <div className='flex items-center flex-row'>
-                        <div className='relative text-sm bg-white py-3 px-4 shadow rounded-xl'>
-                          <div>
-                            Hi there!
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='col-start-1 col-end-8 p-2 rounded-lg'>
-                      <div className='flex items-center flex-row'>
-                        <div className='relative text-sm bg-white py-3 px-4 shadow rounded-xl'>
-                          <div>
-                            Hello!
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+               
+              <MessagesList/>
+  
               <form className='flex flex-row items-center h-16  bg-white w-full px-4'>
                 <div className='flex-grow ml-0'>
                   <div className='relative w-full'>
