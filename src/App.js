@@ -1,4 +1,3 @@
-import './App.css'
 import React from 'react'
 import MessageBar from "./components/MessageBar";
 import MessagesList from "./components/MessagesList";
@@ -88,7 +87,7 @@ class App extends React.Component {
               <SendMessage send={this.onSendMessage}/>
 
             </section>
-            
+
           </aside>
 
         </section>
