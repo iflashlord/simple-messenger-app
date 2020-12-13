@@ -15,13 +15,19 @@ class App extends React.Component {
       {user: "Alex"}, 
     ];
 
+    this.state={
+      selectedFriend: null,
+      messagesList: [],
+    };
 
     this.onSelectFriend = this.onSelectFriend.bind(this);
 
   }
 
   onSelectFriend(friend) {
-     console.log(friend)
+    this.setState({
+      selectedFriend: friend, 
+    })
   }
 
   render() {
@@ -39,7 +45,7 @@ class App extends React.Component {
           <aside className='flex flex-col flex-auto w-full h-full'>
             <section className='flex flex-col flex-auto flex-shrink-0 bg-gray-100 h-full p-4'>
                
-              <MessagesList/>
+              <MessagesList selected={this.state.selectedFriend} messages={[{text: "hi"},{text: "bye!"}]}/>
   
               <SendMessage/>
 
