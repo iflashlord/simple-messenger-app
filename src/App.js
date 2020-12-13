@@ -15,19 +15,50 @@ class App extends React.Component {
       {user: "Alex"}, 
     ];
 
+    this.tempMessagesStorage= {};
+
     this.state={
       selectedFriend: null,
       messagesList: [],
     };
 
     this.onSelectFriend = this.onSelectFriend.bind(this);
+    this.onSendMessage = this.onSendMessage.bind(this);
 
   }
 
+  addMessageToFriend(message) {
+    const friend = this.state.selectedFriend;
+    
+    if(!friend) {
+      return;
+    }
+
+    this.tempMessagesStorage[friend].push({text: message});
+    this.setState({
+      messagesList: this.tempMessagesStorage[friend]
+    });
+  }
+
+  onSendMessage(message) {
+    if(!this.state.selectedFriend){
+      alert("Please Select a Friend!");
+      return;
+    }
+
+    this.addMessageToFriend(message);
+  }
+
   onSelectFriend(friend) {
+    if(!this.tempMessagesStorage[friend]) {
+      this.tempMessagesStorage[friend] = [];
+    }
+ 
     this.setState({
       selectedFriend: friend, 
+      messagesList: this.tempMessagesStorage[friend]
     })
+
   }
 
   render() {
@@ -45,9 +76,9 @@ class App extends React.Component {
           <aside className='flex flex-col flex-auto w-full h-full'>
             <section className='flex flex-col flex-auto flex-shrink-0 bg-gray-100 h-full p-4'>
                
-              <MessagesList selected={this.state.selectedFriend} messages={[{text: "hi"},{text: "bye!"}]}/>
-  
-              <SendMessage/>
+              <MessagesList selected={this.state.selectedFriend} messages={this.state.messagesList}/>
+
+              <SendMessage send={this.onSendMessage}/>
 
             </section>
           </aside>
