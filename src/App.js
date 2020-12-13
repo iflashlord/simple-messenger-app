@@ -1,5 +1,6 @@
 import './App.css'
 import React from 'react'
+import MessageBar from "./components/MessageBar";
 import MessagesList from "./components/MessagesList";
 import SendMessage from "./components/SendMessage";
 import FriendsList from "./components/FriendsList";
@@ -10,6 +11,8 @@ class App extends React.Component {
   constructor(){
     super();
     
+    this.appName= "Chatty!";
+
     this.friendsList = [
       {user: "Katy"},
       {user: "Alex"}, 
@@ -65,22 +68,27 @@ class App extends React.Component {
     return (
       <section className='flex h-screen antialiased text-gray-800 w-full'>
         <section className='flex flex-row h-full w-full overflow-x-hidden'>
+
           <aside className='flex flex-col py-8 pl-5 pr-2 w-56 bg-white flex-shrink-0'>
             
-            <Brand name="Chatty!"/>
+            <Brand name={this.appName}/>
 
             <FriendsList selected={this.onSelectFriend} friends={this.friendsList} />
 
           </aside>
 
           <aside className='flex flex-col flex-auto w-full h-full'>
+
             <section className='flex flex-col flex-auto flex-shrink-0 bg-gray-100 h-full p-4'>
                
+              <MessageBar selected={this.state.selectedFriend} />
+
               <MessagesList selected={this.state.selectedFriend} messages={this.state.messagesList}/>
 
               <SendMessage send={this.onSendMessage}/>
 
             </section>
+            
           </aside>
 
         </section>
