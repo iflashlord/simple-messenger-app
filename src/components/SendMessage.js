@@ -3,14 +3,8 @@ class SendMessage extends React.Component {
 
     constructor(){
         super();
-
-        this.state = {
-            message: ""
-        };
-
         this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
-
     }
 
     handleSubmitMessage(event) {
@@ -18,27 +12,23 @@ class SendMessage extends React.Component {
 
         this.sendMessage();
 
-        this.clearMessage();
+        this.clearMessage(event);
     }
 
     handleMessageChange(event) {
-        this.setState({
-            message: event.target.value
-        })
+        this.props.updateMessage(event.target.value);
     }
 
-    clearMessage() {
-        this.setState({
-            message: ""
-        })
+    clearMessage(event) {
+        event.target.value = "";
     }
 
     sendMessage() {
-        this.props.send(this.state.message);
+        this.props.send(this.props.draftedData);
     }
 
     isDisabled() {
-       return !this.state.message || this.state.message.length === 0;
+       return !this.props.draftedData || this.props.draftedData.length === 0;
     }
 
     render() {
@@ -47,12 +37,12 @@ class SendMessage extends React.Component {
             <form 
                 onSubmit={this.handleSubmitMessage}
                 className="flex flex-row items-center h-16  bg-white w-full px-4">
-
+ 
                 <div className="flex-grow ml-0">
                     <div className="relative w-full">
                         <input 
                             onChange={this.handleMessageChange}
-                            value={this.state.message}
+                            value={this.props.draftedData  || ""}
                             autoFocus={true}
                             type="text"
                             placeholder="Type your message here..."
